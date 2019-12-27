@@ -3,7 +3,7 @@ FROM rust:1-stretch as first-stage
 WORKDIR /usr/src/iron-restsvc
 # Copy sources
 COPY . .
-# Build app (bin will be in /usr/src/app/target/release/rust-lang-docker-multistage-build)
+# Build project (exe will be in /usr/src/iron-restsvc/target/release/iron-restsvc)
 RUN cargo build --release
 
 FROM debian:stretch-slim
