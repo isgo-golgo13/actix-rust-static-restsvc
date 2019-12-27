@@ -1,10 +1,6 @@
 #! /usr/bin/bash
 
-VERSION=$1
-
-show_usage() {
-    [ "$VERSION" == "" ] || [ $# -gt 1 ]; then
-}
-
-show_usage
-cargo build $VERSION
+# sh kr8-server.sh (no args for debug) or --release for release service
+DEBUG=""
+RELEASE=--release
+cargo build $DEBUG  
