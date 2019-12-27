@@ -1,6 +1,10 @@
 version: '3'
 services: 
   web:
-    build: .
+    build: 
+      context: .
+      dockerfile: NoCache.Dockerfile
     ports: 
+      - "2000:2000"
       - "3000:3000"
+      - "4000:4000"
