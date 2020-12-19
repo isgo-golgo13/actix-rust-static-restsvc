@@ -5,13 +5,16 @@ Rust and Iron (Rust Async Web Toolkit) and Docker REST Service
 
 At root of the project (actix-rust-static-restsvc directory), run: 
 
-**`cargo clean`** and `**cargo run`
+**`cargo clean`** and `**cargo run`**
 
 And go to: **`http:\\localhost:8080`**
 
 This will show the static resource `index.html` page.
 
-## To Execute the REST API Routes (**TODO**)
+## To execute the REST API routes (**TODO**)
+
+The REST API routes off of `http://localhost:8080/ are as follows:
+
 
 
 ## To build the actix-rust-static-restsvc Docker container image
