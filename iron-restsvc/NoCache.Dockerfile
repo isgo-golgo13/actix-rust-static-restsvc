@@ -1,4 +1,4 @@
-FROM rust:1-stretch as first-stage
+FROM rust:1.48.0-slim-buster as first-stage
 # Choose a workdir
 WORKDIR /usr/src/iron-restsvc
 # Copy sources
