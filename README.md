@@ -1,23 +1,29 @@
-# rust-iron-restsvc
+# actix-rust-static-restsvc
 Rust and Iron (Rust Async Web Toolkit) and Docker REST Service
 
 ## To compile and execute the project service
 
-At root of the project (iron-restsvc directory), issue either of the two ways to compile and run the rust service: 
+At root of the project (actix-rust-static-restsvc directory), run: 
 
-`cargo clean and cargo build` followed with `./target/debug/iron-restsvc`as this starts the server.
+**cargo clean and cargo run** as this is the equivalent of **`cargo build` and `./target/debug/actix-rust-static-restsvc`**.
 
-OR
+And go to: **`http:\\localhost:8080`**
 
-`cargo clean and cargo run` as this is the equivalent of the previous approach of `cargo build` and `./target/debug/iron-restsvc`.
+This will show the static resource `index.html` page.
 
-Proceed to open a browser and enter `http://localhost:2000` or `http://localhost:3000:3000` or `http://localhost:4000`
 
-## To compile the project service as a Docker service
+## To build the actix-rust-static-restsvc Docker container image
 
-At root of the project (iron-restsvc directory), issue `docker build -t rust-iron-restsvc:1.0 -f NoCache.Dockerfile` or execute the provided shell script `sh docker-kr8.sh` as this executes the previous raw Docker instruction.
+At root of the project ('actix-rust-static-restsvc' directory), run: 
 
-## To execute the project service as a Docker service
+**`docker build -t actix-rust-static-restsvc:1.0 -f NoCache.Dockerfile`** 
 
-At root of the project (iron-restsvc directory), issue `docker run --name rust-iron-restsvc -p 2000:2000 -p 3000:3000 -p 4000:4000 rust-iron-restsvc:1.0`
+To execute the provided shell script to build the Docker container image, run:
+
+**`sh docker-kr8.sh`**.
+
+
+## To run the actix-rust-static-restsvc Docker container
+
+**`docker run --name actix-rust-static-restsvc -p 8080:8080 actix-rust-static-restsvc:1.0`
 
