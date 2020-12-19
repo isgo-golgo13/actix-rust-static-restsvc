@@ -1,0 +1,1 @@
+/Users/tomwallick/Projects/Rust/rust-iron-restsvc/iron-restsvc/target/debug/actix-restsvc: /Users/tomwallick/Projects/Rust/rust-iron-restsvc/iron-restsvc/src/main.rs /Users/tomwallick/Projects/Rust/rust-iron-restsvc/iron-restsvc/static/index.html
