@@ -25,5 +25,5 @@ To execute the provided shell script to build the Docker container image, run:
 
 ## To run the actix-rust-static-restsvc Docker container
 
-**`docker run --name actix-rust-static-restsvc -p 8080:8080 actix-rust-static-restsvc:1.0`
+**`docker run --name actix-rust-static-restsvc -p 8080:8080 actix-rust-static-restsvc:1.0`**
 
