@@ -192,7 +192,7 @@ async fn main() -> io::Result<()> {
             .default_service(
                 // 404 for GET request
                 web::resource("")
-                    .route(web::get().to(unknown_notfound))
+                    .route(web::get().to(unknown_notfound_handler))
                     // all requests that are not `GET`
                     .route(
                         web::route()
