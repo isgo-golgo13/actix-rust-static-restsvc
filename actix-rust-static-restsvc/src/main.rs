@@ -11,7 +11,7 @@ use std::{env, io};
 
 /// index handler
 #[get("/index")]
-async fn index(session: Session, req: HttpRequest) -> Result<HttpResponse> {
+async fn index_handler(session: Session, req: HttpRequest) -> Result<HttpResponse> {
     println!("{:?}", req);
 
     // session
@@ -30,9 +30,95 @@ async fn index(session: Session, req: HttpRequest) -> Result<HttpResponse> {
         .body(include_str!("../static/index.html")))
 }
 
-/// 404 handler
-async fn p404() -> Result<fs::NamedFile> {
-    Ok(fs::NamedFile::open("static/404.html")?.set_status_code(StatusCode::NOT_FOUND))
+
+#[get("/red")]
+async fn red_handler(session: Session, req: HttpRequest) -> Result<HttpResponse> {
+    println!("{:?}", req);
+
+    // session
+    let mut counter = 1;
+    if let Some(count) = session.get::<i32>("counter")? {
+        println!("SESSION value: {}", count);
+        counter = count + 1;
+    }
+
+    // set counter to session
+    session.set("counter", counter)?;
+
+    // response
+    Ok(HttpResponse::build(StatusCode::OK)
+        .content_type("text/html; charset=utf-8")
+        .body(include_str!("../static/red.html")))
+}
+
+
+#[get("/black")]
+async fn black_handler(session: Session, req: HttpRequest) -> Result<HttpResponse> {
+    println!("{:?}", req);
+
+    // session
+    let mut counter = 1;
+    if let Some(count) = session.get::<i32>("counter")? {
+        println!("SESSION value: {}", count);
+        counter = count + 1;
+    }
+
+    // set counter to session
+    session.set("counter", counter)?;
+
+    // response
+    Ok(HttpResponse::build(StatusCode::OK)
+        .content_type("text/html; charset=utf-8")
+        .body(include_str!("../static/black.html")))
+}
+
+
+#[get("/grey")]
+async fn grey_handler(session: Session, req: HttpRequest) -> Result<HttpResponse> {
+    println!("{:?}", req);
+
+    // session
+    let mut counter = 1;
+    if let Some(count) = session.get::<i32>("counter")? {
+        println!("SESSION value: {}", count);
+        counter = count + 1;
+    }
+
+    // set counter to session
+    session.set("counter", counter)?;
+
+    // response
+    Ok(HttpResponse::build(StatusCode::OK)
+        .content_type("text/html; charset=utf-8")
+        .body(include_str!("../static/grey.html")))
+}
+
+
+#[get("/white")]
+async fn white_handler(session: Session, req: HttpRequest) -> Result<HttpResponse> {
+    println!("{:?}", req);
+
+    // session
+    let mut counter = 1;
+    if let Some(count) = session.get::<i32>("counter")? {
+        println!("SESSION value: {}", count);
+        counter = count + 1;
+    }
+
+    // set counter to session
+    session.set("counter", counter)?;
+
+    // response
+    Ok(HttpResponse::build(StatusCode::OK)
+        .content_type("text/html; charset=utf-8")
+        .body(include_str!("../static/white.html")))
+}
+
+
+
+/// No Found handler
+async fn unknown_notfound_handler() -> Result<fs::NamedFile> {
+    Ok(fs::NamedFile::open("static/unknown-notfound.html")?.set_status_code(StatusCode::NOT_FOUND))
 }
 
 /// response body
@@ -68,8 +154,12 @@ async fn main() -> io::Result<()> {
             .wrap(CookieSession::signed(&[0; 32]).secure(false))
             // enable logger - always register actix-web Logger middleware last
             .wrap(middleware::Logger::default())
-            // register simple route, handle all methods
-            .service(index)
+            // register index route, handle all methods
+            .service(index_handler)
+            .service(red_handler)
+            .service(black_handler)
+            .service(grey_handler)
+            .service(white_handler)
             // with path parameters
             .service(web::resource("/user/{name}").route(web::get().to(with_param)))
             // async response body
@@ -102,7 +192,7 @@ async fn main() -> io::Result<()> {
             .default_service(
                 // 404 for GET request
                 web::resource("")
-                    .route(web::get().to(p404))
+                    .route(web::get().to(unknown_notfound))
                     // all requests that are not `GET`
                     .route(
                         web::route()
